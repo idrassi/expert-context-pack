@@ -163,7 +163,13 @@ Write-Host "Hybrid retrieval can accept a caller-provided query embedding (query
 Write-Host ""
 if ($skill -eq "examples/veracrypt-expert-hybrid-vector") {
     $qvec = Join-Path $outDir "query_vector.json"
-    python -c 'import json; from ecp_reference.vectors import hash_embed; print(json.dumps(hash_embed("Where is Argon2 key derivation implemented?", dims=256, salt="veracrypt-hash-embed-v1", include_char_ngrams=True, char_ngram=3, char_ngram_weight=0.5), ensure_ascii=False))' | Out-File -Encoding utf8 $qvec
+    python -c "import json; from ecp_reference.vectors import hash_embed; print(json.dumps(hash_embed('Where is Argon2 key derivation implemented?', dims=256, salt='veracrypt-hash-embed-v1', include_char_ngrams=True, char_ngram=3, char_ngram_weight=0.5), ensure_ascii=False))" | Out-File -Encoding utf8 $qvec
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to generate query_vector.json (python exited with code $LASTEXITCODE)"
+    }
+    if (-not (Test-Path $qvec) -or (Get-Item $qvec).Length -eq 0) {
+        throw "Failed to generate query_vector.json (file is empty): $qvec"
+    }
     Invoke-Cmd "ecpctl query --skill $skill --query-vector-file $qvec 'Where is Argon2 key derivation implemented?'"
 } else {
     Write-Warning "Vector demo skipped (fallback skill selected)."

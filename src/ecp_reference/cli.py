@@ -661,7 +661,13 @@ def cmd_query(args: argparse.Namespace) -> int:
     qvf = getattr(args, "query_vector_file", None)
     if qvf:
         try:
-            query_vector = json.loads(Path(str(qvf)).read_text(encoding="utf-8"))
+            # PowerShell `Out-File -Encoding utf8` writes a UTF-8 BOM on Windows
+            # PowerShell 5.1. Use utf-8-sig to accept both BOM and non-BOM files.
+            qvf_path = Path(str(qvf))
+            raw = qvf_path.read_text(encoding="utf-8-sig")
+            if not raw.strip():
+                raise ValueError("file is empty")
+            query_vector = json.loads(raw)
         except Exception as e:
             raise ECPError(f"Failed to parse --query-vector-file {qvf!r} as JSON: {e}") from e
 

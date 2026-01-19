@@ -102,6 +102,22 @@ def parse_file_uri(uri: str, *, base_dir: Path | None = None) -> Path:
 
 GIT_TIMEOUT_SECONDS = 60  # Timeout for git operations
 
+_PLACEHOLDER_WS_BYTES = set(b" \t\r\n")
+
+
+def _is_git_placeholder_file(path: Path, *, max_bytes: int = 64) -> bool:
+    """Detect tiny whitespace-only files used to keep empty artifacts in git."""
+    try:
+        if not path.exists() or not path.is_file():
+            return False
+        size = path.stat().st_size
+        if size <= 0 or size > max_bytes:
+            return False
+        data = path.read_bytes()
+        return bool(data) and set(data) <= _PLACEHOLDER_WS_BYTES
+    except Exception:
+        return False
+
 def _run_git(repo: Path, args: list[str], *, timeout: int = GIT_TIMEOUT_SECONDS) -> str:
     """Run a git command with timeout protection."""
     try:
@@ -875,6 +891,17 @@ def _build_or_refresh_v2_multi_indexes(
             if not vectors_rel:
                 vectors_rel = "vectors.jsonl"
             vectors_path = index_dir / vectors_rel
+
+        # Example skills may ship placeholder artifacts (tiny whitespace-only files)
+        # so directories are present in git. Those should force a rebuild instead of
+        # being treated as a valid base for incremental updates.
+        if exists and strategy == "incremental":
+            if backend == "vector":
+                if vectors_path is None or not vectors_path.exists() or _is_git_placeholder_file(vectors_path):
+                    strategy = "rebuild"
+            elif backend != "sqlite-fts":
+                if chunks_path.exists() and _is_git_placeholder_file(chunks_path):
+                    strategy = "rebuild"
 
         old_file_manifests: dict[str, dict[str, dict[str, Any]]] = {}
         if file_manifest_path.exists():
@@ -1727,6 +1754,17 @@ def _build_or_refresh_v2(
         if not vectors_rel:
             vectors_rel = "vectors.jsonl"
         vectors_path = index_dir / vectors_rel
+
+    # Example skills may ship placeholder artifacts (tiny whitespace-only files)
+    # so directories are present in git. Those should force a rebuild instead of
+    # being treated as a valid base for incremental updates.
+    if exists and strategy == "incremental":
+        if backend == "vector":
+            if vectors_path is None or not vectors_path.exists() or _is_git_placeholder_file(vectors_path):
+                strategy = "rebuild"
+        elif backend != "sqlite-fts":
+            if chunks_path.exists() and _is_git_placeholder_file(chunks_path):
+                strategy = "rebuild"
 
     max_files_for_index = 20_000
     if isinstance(index_data_meta, dict):

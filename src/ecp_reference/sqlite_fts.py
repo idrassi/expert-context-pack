@@ -391,6 +391,37 @@ def load_sqlite_fts_index(index_dir: Path) -> dict:
     data = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(data, dict) or data.get("format") != SQLITE_FTS_INDEX_FORMAT:
         raise BuildError(f"Index format is not {SQLITE_FTS_INDEX_FORMAT!r}.")
+
+    # Validate the on-disk sqlite DB as part of "loading" so callers can safely
+    # decide whether incremental updates are possible. Example packs may ship
+    # placeholder artifacts (e.g., a 1-byte newline file) to keep directories in
+    # git; those must trigger a rebuild rather than a sqlite "file is not a
+    # database" error at update time.
+    sqlite_cfg = data.get("sqlite") if isinstance(data.get("sqlite"), dict) else {}
+    db_filename = str(sqlite_cfg.get("path") or DEFAULT_DB_FILENAME)
+    table = str(sqlite_cfg.get("table") or DEFAULT_FTS_TABLE)
+    db_path = (index_dir / db_filename).resolve()
+    if not db_path.exists() or not db_path.is_file():
+        raise BuildError(f"Missing sqlite index database at: {db_path}")
+
+    conn: sqlite3.Connection | None = None
+    try:
+        conn = sqlite3.connect(str(db_path))
+        # Force sqlite to read the DB header.
+        conn.execute("PRAGMA schema_version;")
+
+        # Ensure the configured table exists.
+        cur = conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=? LIMIT 1;",
+            (table,),
+        )
+        if cur.fetchone() is None:
+            raise BuildError(f"SQLite FTS table {table!r} not found in database: {db_path}")
+    except sqlite3.DatabaseError as e:
+        raise BuildError(f"Invalid sqlite database at {db_path}: {e}") from e
+    finally:
+        if conn is not None:
+            conn.close()
     return data
 
 
