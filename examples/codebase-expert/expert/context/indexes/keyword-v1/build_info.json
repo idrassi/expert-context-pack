@@ -1,0 +1,45 @@
+{
+  "index_id": "keyword-v1",
+  "type": "keyword",
+  "created_at": "2026-01-19T03:12:28Z",
+  "built_at": "2026-01-19T03:12:28Z",
+  "sources": [
+    {
+      "source_id": "repo",
+      "source_type": "filesystem",
+      "uri": "../realworld_repo",
+      "classification": "internal",
+      "license": "Apache-2.0",
+      "revision": {
+        "hash": "d1290380b042e368a50725956daa3bf22208d554f6f77a64f5b2bdfd0a32edcd",
+        "timestamp": "2026-01-19T03:12:28Z"
+      }
+    },
+    {
+      "source_id": "spec",
+      "source_type": "filesystem",
+      "uri": "../../spec",
+      "classification": "internal",
+      "license": "Apache-2.0",
+      "revision": {
+        "hash": "6052e1ef37e80aca6897fa60a9f79cd4d4ea320cb470a609c0a9fa019e5bbe4c",
+        "timestamp": "2026-01-19T03:12:28Z"
+      }
+    }
+  ],
+  "config": {
+    "max_file_bytes": 512000,
+    "max_files": 20000,
+    "tokenizer": "regex[A-Za-z0-9_]+;lower;stopwords;len>=2;split_camel;split_snake;split_digits",
+    "chunking": {
+      "method": "line-window",
+      "max_chars": 2000,
+      "overlap_chars": 200,
+      "language_hints": []
+    }
+  },
+  "stats": {
+    "documents": 66,
+    "terms": 1259
+  }
+}

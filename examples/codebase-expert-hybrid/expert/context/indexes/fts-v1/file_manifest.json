@@ -1,0 +1,80 @@
+{
+  "format": "ecp-file-manifest-v2",
+  "built_at": "2026-01-19T03:12:42Z",
+  "sources": {
+    "repo": {
+      "auth.py": {
+        "sha256": "5afa2da2ef1c2757b0215cf9dab88e5d4323010ce57e3a27d64798cdf12e812b",
+        "size": 716,
+        "skipped": null
+      },
+      "db.py": {
+        "sha256": "adb60b3b46ca3845082a1f68bad0c0f155db66a4d135e309cd37d919976c04b2",
+        "size": 500,
+        "skipped": null
+      },
+      "main.py": {
+        "sha256": "fafd3af71171a558788653c1c5855cc04bbc96fc5384a79edf7023c98525733c",
+        "size": 461,
+        "skipped": null
+      },
+      "README.md": {
+        "sha256": "4f9dc51057a8b74ba3c7f8b7febf02a0a802f6c299c2a4e7379663fa9298ffbc",
+        "size": 252,
+        "skipped": null
+      }
+    },
+    "spec": {
+      "ECP-SPEC.md": {
+        "sha256": "5c142c6369b01788076ab604b1bc210e6557b67efc33b5627bfaec5163d5f995",
+        "size": 45821,
+        "skipped": null
+      },
+      "schemas/ecp-chunk-provenance.schema.json": {
+        "sha256": "d9aa65a098e704798596659247a56e7773f834d1f300be8d111ede670deefc53",
+        "size": 1870,
+        "skipped": null
+      },
+      "schemas/ecp-eval-suite.schema.json": {
+        "sha256": "b657de87ec9d2c2c869d1be588aaa1094c28a0ce5784c74577d8a63dc5f815c7",
+        "size": 4236,
+        "skipped": null
+      },
+      "schemas/ecp-index-descriptor.schema.json": {
+        "sha256": "0bb4410c3e20421cb1b72fc6f235faa777b0339fe19ff249174ae631f4fbd5d5",
+        "size": 3027,
+        "skipped": null
+      },
+      "schemas/ecp-keyword-index.schema.json": {
+        "sha256": "0d9d414afb30dbb2d7c038557e3c762d8280c44fa52eff78a118895668288b87",
+        "size": 4195,
+        "skipped": null
+      },
+      "schemas/ecp-manifest.schema.json": {
+        "sha256": "31f839db2badf5e8eb2fce02ee09f6afc7cd162575bfb70d6ead0cedc24fef92",
+        "size": 12591,
+        "skipped": null
+      },
+      "schemas/ecp-package.schema.json": {
+        "sha256": "204d0c5645681985d39723465a1131d7af5d14cd65535b05ca903735bc153100",
+        "size": 1723,
+        "skipped": null
+      },
+      "schemas/ecp-policy.schema.json": {
+        "sha256": "b81e1ed0d2a0d298e0e97bc990f24e02ee0341327f4bd994fe4f77501b7cc150",
+        "size": 3683,
+        "skipped": null
+      },
+      "schemas/ecp-sqlite-fts-index.schema.json": {
+        "sha256": "6bb9b0d13d752674ac6282a1fcb19683a450de77ecbce957ef8db0603d29871c",
+        "size": 3322,
+        "skipped": null
+      },
+      "schemas/ecp-vector-index.schema.json": {
+        "sha256": "8c4be08190f7017ecfc2cb8ca2b422423cc7a94179e1e41760dbf14a621c73b7",
+        "size": 5926,
+        "skipped": null
+      }
+    }
+  }
+}

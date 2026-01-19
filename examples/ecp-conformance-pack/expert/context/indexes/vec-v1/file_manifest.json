@@ -1,0 +1,28 @@
+{
+  "format": "ecp-file-manifest-v2",
+  "built_at": "2026-01-15T13:30:04Z",
+  "sources": {
+    "repo": {
+      "auth.py": {
+        "sha256": "2e476b0540ea09e5720daada28b32c2cc4aa083e0f1ba4d5eadb4ae87810fd45",
+        "size": 720,
+        "skipped": null
+      },
+      "db.py": {
+        "sha256": "1999ae89a1ada3ad1985201268b5980d79a70cc74bd823b983bc9d704ac6d6d1",
+        "size": 503,
+        "skipped": null
+      },
+      "main.py": {
+        "sha256": "e3023015a3cf101bfd19f42afaac9ef4be559f7e50dd1224b67df1e051d9c9b5",
+        "size": 464,
+        "skipped": null
+      },
+      "README.md": {
+        "sha256": "bc29afdf70f0776b9167ce1184d9b56ab6264cbac8792297b97294305e8169ad",
+        "size": 380,
+        "skipped": null
+      }
+    }
+  }
+}

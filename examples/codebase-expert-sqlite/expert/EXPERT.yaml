@@ -1,0 +1,89 @@
+ecp_version: '1.0'
+id: codebase-expert-sqlite
+display_name: Codebase Expert (SQLite FTS)
+description: Repository-aware expert with incremental refresh and a SQLite FTS-backed
+  index for scaling.
+profile: codebase
+skill:
+  name: codebase-expert-sqlite
+  surfaces:
+  - cli
+security:
+  classification: internal
+  retention_days: 90
+  contains_secrets: false
+  contains_pii: possible
+  license: Apache-2.0
+  allow_remote_llm: false
+logs:
+  enabled: true
+  store_question: false
+  store_answer: false
+  retention_days: 30
+sources:
+- source_id: repo
+  type: filesystem
+  uri: ../sample_repo
+  scope:
+    include:
+    - '**/*'
+    exclude:
+    - '**/.git/**'
+    - '**/node_modules/**'
+    - '**/dist/**'
+    - '**/build/**'
+  revision:
+    hash: c3fdab074edf59e3392f44a8b704301548d13b821d087f4b57eadd1d008b791d
+    timestamp: '2026-01-19T03:12:34Z'
+  refresh:
+    strategy: incremental
+    incremental:
+      method: file-manifest
+    rebuild:
+      method: full-scan
+- source_id: spec
+  type: filesystem
+  uri: ../../spec
+  scope:
+    include:
+    - '**/*'
+  revision:
+    hash: 0755e4f54e3456f6029bfe9a07991de13a1d0c869b89cdadde3c2f0a69aed30e
+    timestamp: '2026-01-19T03:12:34Z'
+  refresh:
+    strategy: incremental
+    incremental:
+      method: file-manifest
+    rebuild:
+      method: full-scan
+context:
+  strategy: hybrid
+  artifacts:
+    indexes:
+    - id: fts-v1
+      type: keyword
+      backend: sqlite-fts
+      path: expert/context/indexes/fts-v1
+      descriptor: expert/context/indexes/fts-v1/index.json
+      chunking:
+        method: line-window
+        max_chars: 2000
+        overlap_chars: 200
+    summaries:
+    - id: repo-overview
+      type: overview
+      path: expert/context/summaries/repo-overview.md
+      source_id: repo
+    - id: qa-log
+      type: topic
+      path: expert/context/summaries/qa-log.md
+      source_id: repo
+maintenance:
+  policy_path: expert/maintenance/policy.json
+  playbook_path: expert/maintenance/PLAYBOOK.md
+evals:
+  suites:
+  - suite_id: smoke
+    path: expert/evals/smoke.yaml
+  - suite_id: conformance
+    path: expert/evals/conformance.yaml

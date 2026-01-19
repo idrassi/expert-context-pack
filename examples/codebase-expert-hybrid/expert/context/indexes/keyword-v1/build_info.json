@@ -1,0 +1,45 @@
+{
+  "index_id": "keyword-v1",
+  "type": "keyword",
+  "created_at": "2026-01-19T03:12:42Z",
+  "built_at": "2026-01-19T03:12:42Z",
+  "sources": [
+    {
+      "source_id": "repo",
+      "source_type": "filesystem",
+      "uri": "../sample_repo",
+      "classification": "internal",
+      "license": "Apache-2.0",
+      "revision": {
+        "hash": "c3fdab074edf59e3392f44a8b704301548d13b821d087f4b57eadd1d008b791d",
+        "timestamp": "2026-01-19T03:12:42Z"
+      }
+    },
+    {
+      "source_id": "spec",
+      "source_type": "filesystem",
+      "uri": "../../spec",
+      "classification": "internal",
+      "license": "Apache-2.0",
+      "revision": {
+        "hash": "0755e4f54e3456f6029bfe9a07991de13a1d0c869b89cdadde3c2f0a69aed30e",
+        "timestamp": "2026-01-19T03:12:42Z"
+      }
+    }
+  ],
+  "config": {
+    "max_file_bytes": 512000,
+    "max_files": 20000,
+    "tokenizer": "regex[A-Za-z0-9_]+;lower;stopwords;len>=2;split_camel;split_snake;split_digits",
+    "chunking": {
+      "method": "line-window",
+      "max_chars": 2000,
+      "overlap_chars": 200,
+      "language_hints": []
+    }
+  },
+  "stats": {
+    "documents": 54,
+    "terms": 1126
+  }
+}

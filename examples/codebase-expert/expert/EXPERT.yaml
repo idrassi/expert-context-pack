@@ -1,0 +1,88 @@
+ecp_version: '1.0'
+id: codebase-expert
+display_name: Codebase Expert
+description: Repository-aware expert with incremental refresh (file manifest diff)
+  and eval-gated updates.
+profile: codebase
+skill:
+  name: codebase-expert
+  surfaces:
+  - cli
+security:
+  classification: internal
+  retention_days: 90
+  contains_secrets: false
+  contains_pii: possible
+  license: Apache-2.0
+  allow_remote_llm: false
+logs:
+  enabled: true
+  store_question: false
+  store_answer: false
+  retention_days: 30
+sources:
+- source_id: repo
+  type: filesystem
+  uri: ../realworld_repo
+  scope:
+    include:
+    - '**/*'
+    exclude:
+    - '**/.git/**'
+    - '**/node_modules/**'
+    - '**/dist/**'
+    - '**/build/**'
+  revision:
+    hash: d1290380b042e368a50725956daa3bf22208d554f6f77a64f5b2bdfd0a32edcd
+    timestamp: '2026-01-19T03:12:28Z'
+  refresh:
+    strategy: incremental
+    incremental:
+      method: file-manifest
+    rebuild:
+      method: full-scan
+- source_id: spec
+  type: filesystem
+  uri: ../../spec
+  scope:
+    include:
+    - '**/*'
+  revision:
+    hash: 6052e1ef37e80aca6897fa60a9f79cd4d4ea320cb470a609c0a9fa019e5bbe4c
+    timestamp: '2026-01-19T03:12:28Z'
+  refresh:
+    strategy: incremental
+    incremental:
+      method: file-manifest
+    rebuild:
+      method: full-scan
+context:
+  strategy: hybrid
+  artifacts:
+    indexes:
+    - id: keyword-v1
+      type: keyword
+      path: expert/context/indexes/keyword-v1
+      descriptor: expert/context/indexes/keyword-v1/index.json
+      chunking:
+        method: line-window
+        max_chars: 2000
+        overlap_chars: 200
+    summaries:
+    - id: repo-overview
+      type: overview
+      path: expert/context/summaries/repo-overview.md
+      source_id: repo
+    - id: qa-log
+      type: topic
+      path: expert/context/summaries/qa-log.md
+      source_id: repo
+maintenance:
+  policy_path: expert/maintenance/policy.json
+  playbook_path: expert/maintenance/PLAYBOOK.md
+evals:
+  suites:
+  - suite_id: smoke
+    path: expert/evals/smoke.yaml
+  - suite_id: conformance
+    path: expert/evals/conformance.yaml

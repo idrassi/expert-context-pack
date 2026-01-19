@@ -1,0 +1,111 @@
+ecp_version: '1.0'
+id: veracrypt-expert-hybrid-vector
+display_name: 'VeraCrypt Expert (Hybrid: Vector + SQLite FTS)'
+description: Repository-aware expert for VeraCrypt with git-diff incremental refresh
+  and hybrid retrieval (vector + SQLite FTS).
+profile: codebase
+tags:
+- veracrypt
+- codebase
+- security
+- hybrid
+- vector
+skill:
+  name: veracrypt-expert-hybrid-vector
+  surfaces:
+  - cli
+security:
+  classification: public
+  retention_days: 30
+  contains_secrets: false
+  contains_pii: none
+  license: mixed
+  allow_remote_llm: true
+  allowed_remote_llm_providers:
+  - openrouter
+logs:
+  enabled: false
+sources:
+- source_id: repo
+  type: git
+  uri: ../VeraCrypt
+  scope:
+    include:
+    - src/**/*
+    - README.md
+    - License.txt
+    exclude:
+    - '**/.git/**'
+    - '**/node_modules/**'
+    - '**/dist/**'
+    - '**/build/**'
+    - '**/out/**'
+    - src/Common/Language.xml
+    - '**/*.sln'
+    - '**/*.vcxproj'
+    - '**/*.vcxproj.filters'
+    - '**/*.vcxproj.user'
+    - '**/*.vcproj'
+    - '**/*.vcproj.filters'
+  revision:
+    commit: 97a715e8d748d3ad32afa59921d569a127da97a5
+    branch: master
+    timestamp: '2026-01-15T12:44:50Z'
+  refresh:
+    strategy: incremental
+    incremental:
+      method: git-diff
+    rebuild:
+      method: full-scan
+context:
+  strategy: hybrid
+  artifacts:
+    indexes:
+    - id: vec-v1
+      type: vector
+      path: expert/context/indexes/vec-v1
+      descriptor: expert/context/indexes/vec-v1/index.json
+      chunking:
+        method: line-window
+        max_chars: 2000
+        overlap_chars: 200
+      embedding:
+        model: hash-embedding-v1
+        provider: local
+        dimensions: 256
+        params:
+          salt: veracrypt-hash-embed-v1
+          include_char_ngrams: true
+          char_ngram: 3
+          char_ngram_weight: 0.5
+      vector:
+        metric: cosine
+        vectors_path: vectors.jsonl
+        vector_format: sparse-jsonl-v1
+    - id: fts-v1
+      type: keyword
+      backend: sqlite-fts
+      path: expert/context/indexes/fts-v1
+      descriptor: expert/context/indexes/fts-v1/index.json
+      chunking:
+        method: line-window
+        max_chars: 2000
+        overlap_chars: 200
+    summaries:
+    - id: repo-overview
+      type: overview
+      path: expert/context/summaries/repo-overview.md
+      source_id: repo
+    - id: qa-log
+      type: topic
+      path: expert/context/summaries/qa-log.md
+      source_id: repo
+maintenance:
+  policy_path: expert/maintenance/policy.json
+  playbook_path: expert/maintenance/PLAYBOOK.md
+evals:
+  suites:
+  - suite_id: smoke
+    path: expert/evals/smoke.yaml
+  - suite_id: conformance
+    path: expert/evals/conformance.yaml

@@ -1,0 +1,27 @@
+suite_id: smoke
+suite_version: '1.0'
+description: Minimal offline smoke checks (retrieval + citations).
+cases:
+  - case_id: auth-modules
+    mode: ephemeral
+    question: Which modules handle authentication?
+    filters:
+      source_id: repo
+    assertions:
+      min_citations: 1
+      must_cite_source_ids:
+        - repo
+      must_cite:
+        - auth.py
+
+  - case_id: db-access
+    mode: ephemeral
+    question: Where is database access implemented?
+    filters:
+      source_id: repo
+    assertions:
+      min_citations: 1
+      must_cite_source_ids:
+        - repo
+      must_cite:
+        - db.py

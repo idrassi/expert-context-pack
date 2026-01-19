@@ -1,0 +1,33 @@
+{
+  "policy_version": "1.0",
+  "budgets": {
+    "max_update_duration_seconds": 60,
+    "max_changed_files": 200
+  },
+  "refresh_triggers": [
+    { "type": "manual", "spec": "on-demand" }
+  ],
+  "update_strategy": {
+    "default": "incremental",
+    "incremental": { "method": "file-manifest" },
+    "rebuild": { "method": "full-scan" },
+    "rebuild_thresholds": {
+      "changed_files_gt": 200,
+      "days_since_full_rebuild_gt": 30
+    }
+  },
+  "validation": {
+    "eval_suites": ["smoke", "conformance"],
+    "fail_action": "block"
+  },
+  "publishing": {
+    "on_pass": "require_approval",
+    "rollback_on_fail": true
+  },
+  "retention": {
+    "max_backups_per_index": 5,
+    "max_backup_age_days": 14,
+    "prune_logs_after_days": 14
+  }
+}
+

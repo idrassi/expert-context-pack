@@ -1,0 +1,106 @@
+name: ecpctl validate (strict)
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+
+      - name: Run unit tests
+        run: |
+          python -m unittest discover -s tests
+
+  validate-strict:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        skill:
+          - examples/codebase-expert
+          - examples/codebase-expert-hybrid
+          - examples/codebase-expert-sqlite
+          - examples/ecp-conformance-pack
+          - examples/veracrypt-expert
+          - examples/veracrypt-expert-sqlite
+          - examples/veracrypt-expert-hybrid-vector
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+
+      - name: Validate (strict)
+        run: |
+          ecpctl validate --strict --with-artifacts --skill "${{ matrix.skill }}"
+
+  validate-packs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+
+      - name: Validate published packs (strict)
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+          import subprocess
+          import tempfile
+          import zipfile
+
+          packs = sorted(pathlib.Path(".").glob("*.zip"))
+          if not packs:
+            print("No *.zip packs found at repo root; skipping.")
+            raise SystemExit(0)
+
+          for pack in packs:
+            with zipfile.ZipFile(pack, "r") as z:
+              candidates = [n for n in z.namelist() if n.endswith("/expert/package.json")]
+              if not candidates:
+                raise SystemExit(f"{pack} is missing expert/package.json")
+              pkg = json.loads(z.read(candidates[0]).decode("utf-8"))
+              root_dir = str(pkg.get("skill_root_dir") or "").strip().strip("/")
+              if not root_dir:
+                raise SystemExit(f"{pack} has invalid expert/package.json.skill_root_dir")
+
+              with tempfile.TemporaryDirectory(prefix="ecp_pack_") as td:
+                z.extractall(td)
+                skill_dir = str(pathlib.Path(td) / root_dir)
+                subprocess.run(
+                  ["ecpctl", "validate", "--strict", "--with-artifacts", "--skill", skill_dir],
+                  check=True,
+                )
+          PY

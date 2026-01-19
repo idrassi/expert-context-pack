@@ -205,3 +205,20 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+package-lock.json
+
+# ECP runtime artifacts (generated)
+demo-output/
+.backup/
+examples/**/expert/logs/
+examples/**/expert/context/indexes/**/.backup/
+*.zip
+
+# Optional external demo corpora
+examples/VeraCrypt/

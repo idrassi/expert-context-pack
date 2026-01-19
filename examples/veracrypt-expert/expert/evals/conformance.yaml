@@ -1,0 +1,49 @@
+suite_id: conformance
+suite_version: '1.0'
+description: Conformance checks for response shape and citation integrity (offline).
+cases:
+  - case_id: response-shape-license
+    mode: ephemeral
+    question: Where are the license terms located?
+    filters:
+      source_id: repo
+    assertions:
+      response_must_include_fields:
+        - answer
+        - as_of
+        - citations
+        - chunks
+        - synthesis
+      as_of_must_include_source_ids:
+        - repo
+      min_citations: 1
+      must_cite_source_ids:
+        - repo
+      must_cite:
+        - License.txt
+      citations_must_resolve: true
+      citations_must_match_snippets: true
+      citations_must_match_hashes: true
+
+  - case_id: response-shape-argon2
+    mode: ephemeral
+    question: Where is Argon2 implemented?
+    filters:
+      source_id: repo
+    assertions:
+      response_must_include_fields:
+        - answer
+        - as_of
+        - citations
+        - chunks
+        - synthesis
+      as_of_must_include_source_ids:
+        - repo
+      min_citations: 1
+      must_cite_source_ids:
+        - repo
+      must_cite:
+        - src/Crypto/Argon2
+      citations_must_resolve: true
+      citations_must_match_snippets: true
+      citations_must_match_hashes: true

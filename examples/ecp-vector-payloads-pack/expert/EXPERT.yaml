@@ -1,0 +1,106 @@
+ecp_version: '1.0'
+id: ecp-vector-payloads-pack
+display_name: ECP Vector Payloads Pack (Offline)
+description: Demonstrates vector-index-v1 payload formats (JSONL vs NPY/BIN) without network access.
+profile: conformance
+tags:
+- conformance
+- offline
+- citations
+- vector
+- payloads
+skill:
+  name: ecp-vector-payloads-pack
+  surfaces:
+  - cli
+security:
+  classification: public
+  retention_days: 30
+  contains_secrets: false
+  contains_pii: none
+  license: Apache-2.0
+  allow_remote_llm: false
+logs:
+  enabled: false
+sources:
+- source_id: repo
+  type: filesystem
+  uri: expert/sources/repo
+  scope:
+    include:
+    - '**/*'
+  revision:
+    hash: c2d5da0e4bbbf3b8810242145ac2fe8fc24687e90eb14b227cd02302a59db2d5
+    timestamp: '2026-01-15T13:30:04Z'
+  refresh:
+    strategy: incremental
+    incremental:
+      method: file-manifest
+    rebuild:
+      method: full-scan
+context:
+  strategy: hybrid
+  artifacts:
+    indexes:
+    - id: kw-v2
+      type: keyword
+      path: expert/context/indexes/kw-v2
+      descriptor: expert/context/indexes/kw-v2/index.json
+      chunking:
+        method: line-window
+        max_chars: 2000
+        overlap_chars: 200
+    - id: vec-v1
+      type: vector
+      path: expert/context/indexes/vec-v1
+      descriptor: expert/context/indexes/vec-v1/index.json
+      chunking:
+        method: line-window
+        max_chars: 2000
+        overlap_chars: 200
+      embedding:
+        model: hash-embedding-v1
+        provider: local
+        dimensions: 256
+        params:
+          salt: ecp-conformance-pack-hash-embed-v1
+          include_char_ngrams: true
+          char_ngram: 3
+          char_ngram_weight: 0.5
+      vector:
+        metric: cosine
+        vectors_path: vectors.jsonl
+        vector_format: sparse-jsonl-v1
+    - id: vec-v1-npy
+      type: vector
+      path: expert/context/indexes/vec-v1-npy
+      descriptor: expert/context/indexes/vec-v1-npy/index.json
+      chunking:
+        method: line-window
+        max_chars: 2000
+        overlap_chars: 200
+      embedding:
+        model: hash-embedding-v1
+        provider: local
+        dimensions: 256
+        params:
+          salt: ecp-conformance-pack-hash-embed-v1
+          include_char_ngrams: true
+          char_ngram: 3
+          char_ngram_weight: 0.5
+      vector:
+        metric: cosine
+        vectors_path: vectors.npy
+        vector_format: dense-npy-v1
+        dtype: float32
+        endianness: little
+        encoding: row-major
+        chunk_id_order: chunk_id_lex
+maintenance:
+  policy_path: expert/maintenance/policy.json
+evals:
+  suites:
+  - suite_id: smoke
+    path: expert/evals/smoke.yaml
+  - suite_id: conformance
+    path: expert/evals/conformance.yaml

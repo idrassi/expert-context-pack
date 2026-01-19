@@ -1,0 +1,43 @@
+suite_id: smoke
+suite_version: '1.0'
+description: Basic retrieval + citation checks against the sample repo and spec source.
+cases:
+- case_id: auth-module
+  mode: ephemeral
+  question: Which modules handle authentication?
+  filters:
+    source_id: repo
+  assertions:
+    min_citations: 1
+    must_cite_source_ids:
+    - repo
+    must_cite:
+    - auth.py
+    answer_must_include:
+    - auth.py
+- case_id: db-module
+  mode: ephemeral
+  question: Where is database access implemented?
+  filters:
+    source_id: repo
+  assertions:
+    min_citations: 1
+    must_cite_source_ids:
+    - repo
+    must_cite:
+    - db.py
+    answer_must_include:
+    - db.py
+- case_id: ecp-core
+  mode: ephemeral
+  question: What is ECP-Core conformance?
+  filters:
+    source_id: spec
+  assertions:
+    min_citations: 1
+    must_cite_source_ids:
+    - spec
+    must_cite:
+    - ECP-SPEC.md
+    answer_must_include:
+    - ECP-Core

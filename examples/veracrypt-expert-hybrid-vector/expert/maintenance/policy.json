@@ -1,0 +1,47 @@
+{
+  "policy_version": "1.0",
+  "budgets": {
+    "max_update_duration_seconds": 600,
+    "max_update_cost_usd": 0.0,
+    "max_tokens": 0,
+    "max_changed_files": 5000
+  },
+  "refresh_triggers": [
+    {
+      "type": "manual",
+      "spec": "ecpctl refresh"
+    },
+    {
+      "type": "schedule",
+      "spec": "daily"
+    }
+  ],
+  "update_strategy": {
+    "default": "incremental",
+    "incremental": {
+      "method": "git-diff"
+    },
+    "rebuild": {
+      "method": "full-scan"
+    },
+    "rebuild_thresholds": {
+      "changed_files_gt": 1000
+    }
+  },
+  "validation": {
+    "eval_suites": [
+      "smoke"
+    ],
+    "fail_action": "rollback"
+  },
+  "publishing": {
+    "on_pass": "auto_publish",
+    "rollback_on_fail": true
+  },
+  "retention": {
+    "max_backups_per_index": 2,
+    "max_backup_age_days": 14,
+    "prune_logs_after_days": 30
+  }
+}
+

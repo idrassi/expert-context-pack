@@ -1,0 +1,1314 @@
+{
+  "format": "keyword-index-v2",
+  "index_id": "kw-v2",
+  "created_at": "2026-01-15T13:30:04Z",
+  "built_at": "2026-01-15T13:30:04Z",
+  "sources": [
+    {
+      "source_id": "repo",
+      "source_type": "filesystem",
+      "uri": "expert/sources/repo",
+      "classification": "public",
+      "license": "Apache-2.0",
+      "revision": {
+        "hash": "c2d5da0e4bbbf3b8810242145ac2fe8fc24687e90eb14b227cd02302a59db2d5",
+        "timestamp": "2026-01-15T13:30:04Z"
+      }
+    }
+  ],
+  "config": {
+    "max_file_bytes": 512000,
+    "max_files": 20000,
+    "tokenizer": "regex[A-Za-z0-9_]+;lower;stopwords;len>=2;split_camel;split_snake;split_digits",
+    "chunking": {
+      "method": "line-window",
+      "max_chars": 2000,
+      "overlap_chars": 200,
+      "language_hints": []
+    }
+  },
+  "documents": {
+    "repo::auth.py#L1-L27": {
+      "source_id": "repo",
+      "path": "auth.py",
+      "start_line": 1,
+      "end_line": 27,
+      "file_sha256": "2e476b0540ea09e5720daada28b32c2cc4aa083e0f1ba4d5eadb4ae87810fd45",
+      "chunk_sha256": "2e476b0540ea09e5720daada28b32c2cc4aa083e0f1ba4d5eadb4ae87810fd45",
+      "size": 720,
+      "mtime": 1768483787,
+      "lines": 27
+    },
+    "repo::db.py#L1-L21": {
+      "source_id": "repo",
+      "path": "db.py",
+      "start_line": 1,
+      "end_line": 21,
+      "file_sha256": "1999ae89a1ada3ad1985201268b5980d79a70cc74bd823b983bc9d704ac6d6d1",
+      "chunk_sha256": "1999ae89a1ada3ad1985201268b5980d79a70cc74bd823b983bc9d704ac6d6d1",
+      "size": 503,
+      "mtime": 1768483787,
+      "lines": 21
+    },
+    "repo::main.py#L1-L21": {
+      "source_id": "repo",
+      "path": "main.py",
+      "start_line": 1,
+      "end_line": 21,
+      "file_sha256": "e3023015a3cf101bfd19f42afaac9ef4be559f7e50dd1224b67df1e051d9c9b5",
+      "chunk_sha256": "e3023015a3cf101bfd19f42afaac9ef4be559f7e50dd1224b67df1e051d9c9b5",
+      "size": 464,
+      "mtime": 1768483787,
+      "lines": 21
+    },
+    "repo::README.md#L1-L11": {
+      "source_id": "repo",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 11,
+      "file_sha256": "bc29afdf70f0776b9167ce1184d9b56ab6264cbac8792297b97294305e8169ad",
+      "chunk_sha256": "bc29afdf70f0776b9167ce1184d9b56ab6264cbac8792297b97294305e8169ad",
+      "size": 380,
+      "mtime": 1768483787,
+      "lines": 11
+    }
+  },
+  "doc_terms": {
+    "repo::auth.py#L1-L27": {
+      "authentication": 1,
+      "module": 1,
+      "real": 1,
+      "system": 1,
+      "include": 1,
+      "password": 1,
+      "hashing": 1,
+      "oauth": 1,
+      "auth": 1,
+      "jwt": 1,
+      "session": 1,
+      "tokens": 1,
+      "etc": 1,
+      "dataclasses": 1,
+      "dataclass": 1,
+      "typing": 1,
+      "optional": 1,
+      "user": 1,
+      "user_id": 1,
+      "id": 1,
+      "str": 1,
+      "email": 1,
+      "authenticate": 1,
+      "returns": 1,
+      "success": 1,
+      "failure": 1,
+      "note": 1,
+      "poc": 1,
+      "po": 1,
+      "not": 1,
+      "use": 1,
+      "production": 1,
+      "if": 1,
+      "correct": 1,
+      "horse": 1,
+      "battery": 1,
+      "staple": 1,
+      "123": 1,
+      "issue_session_token": 1,
+      "issue": 1,
+      "token": 1,
+      "authenticated": 1
+    },
+    "repo::db.py#L1-L21": {
+      "database": 1,
+      "module": 1,
+      "demonstrates": 1,
+      "data": 1,
+      "access": 1,
+      "sqlite3": 1,
+      "sqlite": 1,
+      "typing": 1,
+      "any": 1,
+      "connect": 1,
+      "db_path": 1,
+      "db": 1,
+      "path": 1,
+      "str": 1,
+      "connection": 1,
+      "fetch_user": 1,
+      "fetch": 1,
+      "user": 1,
+      "conn": 1,
+      "user_id": 1,
+      "id": 1,
+      "dict": 1,
+      "cur": 1,
+      "cursor": 1,
+      "execute": 1,
+      "select": 1,
+      "email": 1,
+      "users": 1,
+      "row": 1,
+      "fetchone": 1,
+      "if": 1,
+      "not": 1
+    },
+    "repo::main.py#L1-L21": {
+      "entrypoint": 1,
+      "wires": 1,
+      "authentication": 1,
+      "database": 1,
+      "access": 1,
+      "auth": 1,
+      "authenticate": 1,
+      "issue_session_token": 1,
+      "issue": 1,
+      "session": 1,
+      "token": 1,
+      "db": 1,
+      "connect": 1,
+      "fetch_user": 1,
+      "fetch": 1,
+      "user": 1,
+      "login_flow": 1,
+      "login": 1,
+      "flow": 1,
+      "email": 1,
+      "str": 1,
+      "password": 1,
+      "if": 1,
+      "not": 1,
+      "denied": 1,
+      "get_profile": 1,
+      "get": 1,
+      "profile": 1,
+      "db_path": 1,
+      "path": 1,
+      "user_id": 1,
+      "id": 1,
+      "dict": 1,
+      "conn": 1
+    },
+    "repo::README.md#L1-L11": {
+      "bundled": 1,
+      "repo": 1,
+      "ecp": 1,
+      "conformance": 1,
+      "repository": 1,
+      "inside": 1,
+      "examples": 1,
+      "pack": 1,
+      "so": 1,
+      "ecpctl": 1,
+      "query": 1,
+      "works": 1,
+      "cloning": 1,
+      "anything": 1,
+      "run": 1,
+      "evals": 1,
+      "suite": 1,
+      "id": 1,
+      "validate": 1,
+      "citations": 1,
+      "offline": 1,
+      "files": 1,
+      "auth": 1,
+      "py": 1,
+      "authentication": 1,
+      "session": 1,
+      "handling": 1,
+      "db": 1,
+      "database": 1,
+      "connection": 1,
+      "queries": 1,
+      "main": 1,
+      "entrypoint": 1,
+      "wiring": 1
+    }
+  },
+  "terms": {
+    "authentication": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "module": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "real": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "system": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "include": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "password": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "hashing": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "oauth": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "auth": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "jwt": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "session": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "tokens": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "etc": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "dataclasses": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "dataclass": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "typing": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "optional": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "user": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "user_id": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "id": {
+      "df": 4,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "str": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "email": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "authenticate": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "returns": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "success": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "failure": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "note": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "poc": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "po": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "not": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "use": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "production": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "if": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "correct": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "horse": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "battery": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "staple": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "123": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "issue_session_token": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "issue": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "token": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "authenticated": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::auth.py#L1-L27",
+          1
+        ]
+      ]
+    },
+    "database": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "demonstrates": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "data": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "access": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "sqlite3": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "sqlite": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "any": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "connect": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "db_path": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "db": {
+      "df": 3,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "path": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "connection": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "fetch_user": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "fetch": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "conn": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "dict": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ],
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "cur": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "cursor": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "execute": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "select": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "users": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "row": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "fetchone": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::db.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "entrypoint": {
+      "df": 2,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ],
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "wires": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "login_flow": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "login": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "flow": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "denied": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "get_profile": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "get": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "profile": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::main.py#L1-L21",
+          1
+        ]
+      ]
+    },
+    "bundled": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "repo": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "ecp": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "conformance": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "repository": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "inside": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "examples": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "pack": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "so": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "ecpctl": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "query": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "works": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "cloning": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "anything": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "run": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "evals": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "suite": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "validate": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "citations": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "offline": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "files": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "py": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "handling": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "queries": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "main": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    },
+    "wiring": {
+      "df": 1,
+      "postings": [
+        [
+          "repo::README.md#L1-L11",
+          1
+        ]
+      ]
+    }
+  },
+  "file_chunks": {
+    "repo": {
+      "auth.py": [
+        "repo::auth.py#L1-L27"
+      ],
+      "db.py": [
+        "repo::db.py#L1-L21"
+      ],
+      "main.py": [
+        "repo::main.py#L1-L21"
+      ],
+      "README.md": [
+        "repo::README.md#L1-L11"
+      ]
+    }
+  }
+}

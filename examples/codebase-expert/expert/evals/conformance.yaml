@@ -1,0 +1,51 @@
+suite_id: conformance
+suite_version: '1.0'
+description: Conformance checks for response shape and citation integrity (offline).
+cases:
+  - case_id: response-shape-repo
+    mode: ephemeral
+    question: Which modules handle authentication?
+    filters:
+      source_id: repo
+    assertions:
+      response_must_include_fields:
+        - answer
+        - as_of
+        - citations
+        - chunks
+        - synthesis
+      as_of_must_include_source_ids:
+        - repo
+        - spec
+      min_citations: 1
+      must_cite_source_ids:
+        - repo
+      must_cite:
+        - auth.py
+      citations_must_resolve: true
+      citations_must_match_snippets: true
+      citations_must_match_hashes: true
+
+  - case_id: response-shape-spec
+    mode: ephemeral
+    question: What is ECP-Core conformance?
+    filters:
+      source_id: spec
+    assertions:
+      response_must_include_fields:
+        - answer
+        - as_of
+        - citations
+        - chunks
+        - synthesis
+      as_of_must_include_source_ids:
+        - repo
+        - spec
+      min_citations: 1
+      must_cite_source_ids:
+        - spec
+      must_cite:
+        - ECP-SPEC.md
+      citations_must_resolve: true
+      citations_must_match_snippets: true
+      citations_must_match_hashes: true

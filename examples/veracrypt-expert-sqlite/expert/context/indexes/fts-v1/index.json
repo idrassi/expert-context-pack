@@ -1,0 +1,23 @@
+{
+  "index_id": "fts-v1",
+  "type": "keyword",
+  "created_at": "2026-01-19T00:00:00Z",
+  "built_at": "2026-01-19T00:00:00Z",
+  "chunking": {
+    "method": "line-window",
+    "max_chars": 2000,
+    "overlap_chars": 200,
+    "language_hints": []
+  },
+  "retrieval_defaults": {
+    "top_k": 8,
+    "filters_supported": [
+      "path_prefix",
+      "source_id"
+    ]
+  },
+  "provenance": {
+    "index_data_path": "index_data.json",
+    "chunks_path": "chunks.jsonl"
+  }
+}
