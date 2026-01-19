@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ecp_poc.errors import ManifestValidationError
-from ecp_poc.skill_loader import load_skill_bundle
+from ecp_reference.errors import ManifestValidationError
+from ecp_reference.skill_loader import load_skill_bundle
 
 
 def _write(path: Path, text: str) -> None:

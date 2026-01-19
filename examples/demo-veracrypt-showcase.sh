@@ -165,7 +165,7 @@ echo "Hybrid retrieval can accept a caller-provided query embedding (query_vecto
 echo ""
 if [[ "${SKILL}" == "examples/veracrypt-expert-hybrid-vector" ]]; then
   qvec_file="${OUT_DIR}/query_vector.json"
-  python -c "import json; from ecp_poc.vectors import hash_embed; print(json.dumps(hash_embed('Where is Argon2 key derivation implemented?', dims=256, salt='veracrypt-hash-embed-v1', include_char_ngrams=True, char_ngram=3, char_ngram_weight=0.5), ensure_ascii=False))" > "${qvec_file}"
+  python -c "import json; from ecp_reference.vectors import hash_embed; print(json.dumps(hash_embed('Where is Argon2 key derivation implemented?', dims=256, salt='veracrypt-hash-embed-v1', include_char_ngrams=True, char_ngram=3, char_ngram_weight=0.5), ensure_ascii=False))" > "${qvec_file}"
   run_cmd "ecpctl query --skill ${SKILL} --query-vector-file '${qvec_file}' 'Where is Argon2 key derivation implemented?'"
 else
   warn "Vector demo skipped (fallback skill selected)."

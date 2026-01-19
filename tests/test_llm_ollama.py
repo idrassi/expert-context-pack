@@ -4,7 +4,7 @@ import json
 import unittest
 from unittest.mock import MagicMock, patch
 
-from ecp_poc.llm_ollama import (
+from ecp_reference.llm_ollama import (
     DEFAULT_OLLAMA_HOST,
     DEFAULT_OLLAMA_MODEL,
     ollama_chat_completion,

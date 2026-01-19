@@ -18,10 +18,17 @@ python -m pip install -e .
 ecpctl --help
 ```
 
+Or install from PyPI:
+
+```bash
+python -m pip install ecp-reference
+ecpctl --help
+```
+
 If you prefer not to install, most commands also work as:
 
 ```bash
-python -m ecp_poc.cli --help
+python -m ecp_reference.cli --help
 ```
 
 ---

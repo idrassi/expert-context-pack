@@ -34,12 +34,21 @@ ECP is aimed at portable, offline, and auditable expert context. It complements 
 ## Repository layout
 
 - `spec/` - the ECP spec (v1.0) and JSON Schemas (source of truth for this repo)
-- `src/ecp_poc/` - the reference implementation
+- `src/ecp_reference/` - the reference implementation
 - `examples/` - example ECP-enabled skills and demo corpora (see `examples/README.md`)
 
 ## Installation
 
 Python 3.10+ is recommended.
+
+From PyPI:
+
+```bash
+python -m pip install ecp-reference
+ecpctl --help
+```
+
+From source (repo root):
 
 ```bash
 python -m pip install -e .
@@ -50,6 +59,18 @@ Or without editable mode:
 
 ```bash
 python -m pip install .
+```
+
+## Release (PyPI)
+
+Build and upload (authenticate with a PyPI token via `TWINE_USERNAME=__token__` and `TWINE_PASSWORD=pypi-...`):
+
+```bash
+python -m pip install -U build twine
+python -m build
+python -m twine check dist/*
+python -m twine upload --repository testpypi dist/*  # optional
+python -m twine upload dist/*
 ```
 
 ## Quickstart (runs out-of-the-box)

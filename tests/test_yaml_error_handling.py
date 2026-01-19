@@ -7,8 +7,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ecp_poc.errors import EvalValidationError, ManifestValidationError
-from ecp_poc.skill_loader import load_skill_bundle
+from ecp_reference.errors import EvalValidationError, ManifestValidationError
+from ecp_reference.skill_loader import load_skill_bundle
 
 
 def _write(path: Path, text: str) -> None:
@@ -127,7 +127,7 @@ class TestYamlErrorHandling(unittest.TestCase):
             env["PYTHONPATH"] = str(repo_root / "src") + os.pathsep + env.get("PYTHONPATH", "")
 
             p = subprocess.run(
-                [sys.executable, "-m", "ecp_poc.cli", "validate", "--skill", str(root)],
+                [sys.executable, "-m", "ecp_reference.cli", "validate", "--skill", str(root)],
                 cwd=str(repo_root),
                 env=env,
                 capture_output=True,
@@ -135,4 +135,3 @@ class TestYamlErrorHandling(unittest.TestCase):
             )
             self.assertEqual(p.returncode, 2)
             self.assertIn("failed to parse expert.yaml", (p.stdout + p.stderr).lower())
-

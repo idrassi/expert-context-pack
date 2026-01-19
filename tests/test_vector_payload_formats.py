@@ -4,10 +4,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ecp_poc.errors import QueryError
-from ecp_poc.indexer import SourceSpec, build_vector_index_multi, load_vector_index
-from ecp_poc.retriever import retrieve_vector
-from ecp_poc.vectors import open_dense_vector_reader_from_file
+from ecp_reference.errors import QueryError
+from ecp_reference.indexer import SourceSpec, build_vector_index_multi, load_vector_index
+from ecp_reference.retriever import retrieve_vector
+from ecp_reference.vectors import open_dense_vector_reader_from_file
 
 
 def _write(path: Path, text: str) -> None:

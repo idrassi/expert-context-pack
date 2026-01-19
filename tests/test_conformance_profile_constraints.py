@@ -5,9 +5,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ecp_poc.indexer import SourceSpec, build_keyword_index_multi
-from ecp_poc.profile_constraints import validate_profile_constraints
-from ecp_poc.skill_loader import load_skill_bundle
+from ecp_reference.indexer import SourceSpec, build_keyword_index_multi
+from ecp_reference.profile_constraints import validate_profile_constraints
+from ecp_reference.skill_loader import load_skill_bundle
 
 
 def _write(path: Path, text: str) -> None:

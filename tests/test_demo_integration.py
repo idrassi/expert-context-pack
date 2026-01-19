@@ -13,7 +13,7 @@ from pathlib import Path
 class TestDemoIntegration(unittest.TestCase):
     def _run_cli(self, *args: str, cwd: Path, env: dict[str, str]) -> str:
         p = subprocess.run(
-            [sys.executable, "-m", "ecp_poc.cli", *args],
+            [sys.executable, "-m", "ecp_reference.cli", *args],
             cwd=str(cwd),
             env=env,
             capture_output=True,

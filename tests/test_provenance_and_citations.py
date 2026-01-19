@@ -6,12 +6,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ecp_poc.evals import _validate_response_citations, run_eval_suites
-from ecp_poc.errors import ECPError
-from ecp_poc.indexer import SourceSpec, build_keyword_index_multi
-from ecp_poc.packaging import create_skill_package
-from ecp_poc.runtime import query_expert
-from ecp_poc.skill_loader import load_skill_bundle
+from ecp_reference.evals import _validate_response_citations, run_eval_suites
+from ecp_reference.errors import ECPError
+from ecp_reference.indexer import SourceSpec, build_keyword_index_multi
+from ecp_reference.packaging import create_skill_package
+from ecp_reference.runtime import query_expert
+from ecp_reference.skill_loader import load_skill_bundle
 
 
 def _write(path: Path, text: str) -> None:

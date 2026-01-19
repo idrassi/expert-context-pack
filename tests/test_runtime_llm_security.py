@@ -6,8 +6,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from ecp_poc.errors import QueryError
-from ecp_poc.runtime import query_expert
+from ecp_reference.errors import QueryError
+from ecp_reference.runtime import query_expert
 
 
 def _write(path: Path, text: str) -> None:
@@ -147,7 +147,7 @@ class TestQueryLLMSecurity(unittest.TestCase):
                 self.assertEqual(kwargs.get("llm"), "ollama")
                 return ("ok", {"provider": "ollama", "method": "llm"})
 
-            with patch("ecp_poc.runtime.synthesize_answer", side_effect=_fake_synthesize_answer):
+            with patch("ecp_reference.runtime.synthesize_answer", side_effect=_fake_synthesize_answer):
                 resp = query_expert(root, question="hello", mode="ephemeral", top_k=1, llm="ollama")
 
             self.assertEqual(resp.get("answer"), "ok")
@@ -160,7 +160,7 @@ class TestQueryLLMSecurity(unittest.TestCase):
                 allowed_remote_llm_providers=["anthropic"],
             )
 
-            with patch("ecp_poc.runtime.synthesize_answer", return_value=("ok", {"provider": "openrouter"})):
+            with patch("ecp_reference.runtime.synthesize_answer", return_value=("ok", {"provider": "openrouter"})):
                 with self.assertRaises(QueryError) as ctx:
                     query_expert(root, question="hello", mode="ephemeral", top_k=1, llm="openrouter")
 

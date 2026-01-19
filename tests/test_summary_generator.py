@@ -6,9 +6,9 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from ecp_poc.errors import QueryError
-from ecp_poc.skill_loader import SkillBundle, load_skill_bundle
-from ecp_poc.summary_generator import (
+from ecp_reference.errors import QueryError
+from ecp_reference.skill_loader import SkillBundle, load_skill_bundle
+from ecp_reference.summary_generator import (
     SummaryGenerationResult,
     _check_llm_security,
     _format_chunks_for_prompt,
@@ -286,7 +286,7 @@ class TestGenerateSummaries(unittest.TestCase):
 
             mock_llm_response = "# Repository Overview\n\nThis is a test repository.\n"
 
-            with patch("ecp_poc.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
+            with patch("ecp_reference.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
                 result = generate_summaries(
                     skill_root=skill_root,
                     bundle=bundle,
@@ -312,7 +312,7 @@ class TestGenerateSummaries(unittest.TestCase):
 
             mock_llm_response = "# Summary\n\nTest content.\n"
 
-            with patch("ecp_poc.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
+            with patch("ecp_reference.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
                 result = generate_summaries(
                     skill_root=skill_root,
                     bundle=bundle,
@@ -394,7 +394,7 @@ class TestGenerateSummaries(unittest.TestCase):
 
             mock_llm_response = "# Summary\n\nTest content.\n"
 
-            with patch("ecp_poc.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
+            with patch("ecp_reference.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
                 result = generate_summaries(
                     skill_root=skill_root,
                     bundle=bundle,
@@ -412,7 +412,7 @@ class TestGenerateSummaries(unittest.TestCase):
             skill_root = _create_test_skill(Path(tmp))
             bundle = load_skill_bundle(skill_root)
 
-            with patch("ecp_poc.summary_generator.ollama_chat_completion",
+            with patch("ecp_reference.summary_generator.ollama_chat_completion",
                       side_effect=RuntimeError("LLM connection failed")):
                 result = generate_summaries(
                     skill_root=skill_root,
@@ -433,7 +433,7 @@ class TestGenerateSummaries(unittest.TestCase):
 
             mock_llm_response = "# Summary\n\nTest content.\n"
 
-            with patch("ecp_poc.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
+            with patch("ecp_reference.summary_generator.ollama_chat_completion", return_value=mock_llm_response):
                 result = generate_summaries(
                     skill_root=skill_root,
                     bundle=bundle,
